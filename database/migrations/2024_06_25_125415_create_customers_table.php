@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('state');
-            $table->string('postal_code');
+            $table->string('postal_code')->default('00000')->nullable();
         });
     }
 
