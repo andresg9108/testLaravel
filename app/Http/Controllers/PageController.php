@@ -7,14 +7,16 @@ use App\Models\Entrada;
 
 class PageController extends Controller
 {
-    public function Home(){
-        return view('home');
-    }
+    public function Home(Request $request){
+        $buscar = $request->buscar;
 
-    public function Blog(){
         // $entradas = Entrada::get();
         // $entradas = Entrada::latest()->paginate();
-        $entradas = Entrada::orderBy('title', 'asc')->paginate();
+        // $entradas = Entrada::orderBy('title', 'asc')->paginate();
+        $entradas = Entrada::where('title', 'LIKE', "%{$buscar}%")
+            ->with('user')
+            ->orderBy('title', 'asc')
+            ->paginate();
 
         // dd($entradas);
 

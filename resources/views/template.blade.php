@@ -6,6 +6,7 @@
 
         @yield('head')
 
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
         <style>
             body{
                 font-family: Arial;
@@ -23,19 +24,26 @@
         </style>
     </head>
     <body>
-        <p>
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('blog') }}">Blog</a>
+        <div class="container px-4 mx-auto">
+            <header class="flex justify-between items-center py-4">
+                <div class="flex items-center flex-grow gap-4">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('img/logo.png') }}" class="h-12-" width="100" />
+                    </a>
+                    <form action="{{ route('home') }}" method="GET">
+                        <input type="text" name="buscar" placeholder="Buscar" value="{{ request('buscar') }}" />
+                        <input type="submit" value="Buscar">
+                    </form>
+                </div>
 
-            @auth
-            <a href="{{ route('dashboard') }}">Dashboard</a>
-            @else
-            <a href="{{ route('login') }}">Login</a>
-            @endauth
-        </p>
+                @auth
+                <a href="{{ route('dashboard') }}">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}">Login</a>
+                @endauth
+            </header>
 
-        <hr>
-
-        @yield('contenido')
+            @yield('contenido')
+        </div>
     </body>
 </html>

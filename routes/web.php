@@ -7,7 +7,6 @@ use App\Http\Controllers\EntradaController;
 
 Route::controller(PageController::class)->group(function(){
     Route::get('/', 'Home')->name('home');
-    Route::get('/blog', 'Blog')->name('blog');
     Route::get('/blog/{mi_entrada:entrada_id}', 'Entrada')->name('entrada');
 });
 
